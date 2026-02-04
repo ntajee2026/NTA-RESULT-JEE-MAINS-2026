@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NTA Result Login</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f2f2f2;
+}
+.box{
+  width:340px;
+  margin:80px auto;
+  background:#fff;
+  padding:20px;
+  border-radius:8px;
+  box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+input,button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  font-size:15px;
+}
+button{
+  background:#0b3c6f;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+#captcha{
+  background:#eee;
+  text-align:center;
+  padding:8px;
+  margin-top:10px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
+.pass-box{
+  position:relative;
+}
+.eye{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h3>NTA Result Login</h3>
+
+  <input id="app" type="text" inputmode="numeric"
+         placeholder="Application Number">
+
+  <div class="pass-box">
+    <input id="pass" type="password" placeholder="Password">
+    <span class="eye" onclick="togglePass()">👁️</span>
+  </div>
+
+  <div id="captcha"></div>
+  <input id="captchaInput" placeholder="Enter Captcha">
+
+  <button onclick="login()">LOGIN</button>
+</div>
+
+<script>
+/* 🔐 DATABASE */
+const db = {
+  "260310087055": {
+    password: "@Tushar638",
+    pdf: "260310087055.pdf"
+  }
+};
+
+/* CAPTCHA */
+function genCaptcha(){
+  document.getElementById("captcha").innerText =
+    Math.floor(1000 + Math.random() * 9000);
+}
+genCaptcha();
+
+/* EYE TOGGLE */
+function togglePass(){
+  const p = document.getElementById("pass");
+  p.type = p.type === "password" ? "text" : "password";
+}
+
+/* 🔥 FINAL LOGIN */
+function login(){
+
+  // 🔥 ONLY DIGITS ALLOWED
+  const app = document.getElementById("app")
+    .value.replace(/[^0-9]/g,"");
+
+  const pass = document.getElementById("pass").value;
+  const capIn = document.getElementById("captchaInput").value.trim();
+  const cap = document.getElementById("captcha").innerText;
+
+  if(app.length !== 12){
+    alert("Invalid Application Number");
+    return;
+  }
+
+  if(capIn !== cap){
+    alert("Captcha incorrect");
+    genCaptcha();
+    return;
+  }
+
+  if(!db[app]){
+    alert("Invalid Application Number or Password");
+    return;
+  }
+
+  if(db[app].password !== pass){
+    alert("Invalid Application Number or Password");
+    return;
+  }
+
+  window.open(db[app].pdf,"_blank");
+}
+</script>
+
+</body>
+</html>

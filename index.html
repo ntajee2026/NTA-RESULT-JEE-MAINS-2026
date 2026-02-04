@@ -136,14 +136,14 @@
       };
 
       if(!db[app] || db[app].password !== pass){
-        alert('Invalid Application Number or Password ()');
+        alert('Invalid Application Number or Password ');
         return;
       }
 
       // Show result
       const r = db[app];
       document.querySelector('.card-body').innerHTML = `
-        <h3 style="margin-top:0">Result (Demo)</h3>
+        <h3 style="margin-top:0">Result </h3>
         <p><b>Name:</b> ${r.name}</p>
         <p><b>Application No:</b> ${app}</p>
         <hr/>

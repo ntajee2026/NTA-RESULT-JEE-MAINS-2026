@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Result Login (Demo)</title>
+  <title>Result Login </title>
   <style>
     :root{
       --blue:#0b3c6f;
@@ -125,30 +125,29 @@
       const cap = document.getElementById('captcha').innerText;
       if(capIn !== cap){ alert('CAPTCHA incorrect'); genCaptcha(); return; }
 
-      // DEMO database (fake)
+      
+  
       const db = {
-        const db = {
-  "260310087055": {
-    password: "@Tushar638",
-    pdf: "260310087055.pdf"
-  }
-};
-
+        "260310087055": {
+          password:"@Tushar638",
+          name:"Tushar Nayare",
+          pdf:"260310087055.pdf" // 
+        }
       };
 
       if(!db[app] || db[app].password !== pass){
-        alert('Invalid Application Number or Password (Demo)');
+        alert('Invalid Application Number or Password ()');
         return;
       }
 
       // Show result
       const r = db[app];
-document.querySelector('.card-body').innerHTML = `
-  <iframe src="${r.pdf}"
-    style="width:100%;height:600px;border:1px solid #ccc">
-  </iframe>
-`;
-
+      document.querySelector('.card-body').innerHTML = `
+        <h3 style="margin-top:0">Result (Demo)</h3>
+        <p><b>Name:</b> ${r.name}</p>
+        <p><b>Application No:</b> ${app}</p>
+        <hr/>
+        <iframe src="${r.pdf}" style="width:100%;height:600px;border:1px solid #ccc" ></iframe>
       `;
     }
   </script>

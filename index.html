@@ -127,7 +127,13 @@
 
       // DEMO database (fake)
       const db = {
-        "1234567890": { password:"demo123", name:"Tushar Nayare", percentile:98.76, phy:96, chem:99, maths:97 }
+        const db = {
+  "260310087055": {
+    password: "@Tushar638",
+    pdf: "260310087055.pdf"
+  }
+};
+
       };
 
       if(!db[app] || db[app].password !== pass){
@@ -137,16 +143,12 @@
 
       // Show result
       const r = db[app];
-      document.querySelector('.card-body').innerHTML = `
-        <h3 style="margin-top:0">Result (Demo)</h3>
-        <p><b>Name:</b> ${r.name}</p>
-        <p><b>Application No:</b> ${app}</p>
-        <hr/>
-        <p><b>Overall Percentile:</b> ${r.percentile}</p>
-        <table style="width:100%;border-collapse:collapse">
-          <tr><th style="border:1px solid #ddd;padding:6px">Physics</th><th style="border:1px solid #ddd;padding:6px">Chemistry</th><th style="border:1px solid #ddd;padding:6px">Maths</th></tr>
-          <tr><td style="border:1px solid #ddd;padding:6px;text-align:center">${r.phy}</td><td style="border:1px solid #ddd;padding:6px;text-align:center">${r.chem}</td><td style="border:1px solid #ddd;padding:6px;text-align:center">${r.maths}</td></tr>
-        </table>
+document.querySelector('.card-body').innerHTML = `
+  <iframe src="${r.pdf}"
+    style="width:100%;height:600px;border:1px solid #ccc">
+  </iframe>
+`;
+
       `;
     }
   </script>
